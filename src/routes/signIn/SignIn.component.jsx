@@ -9,6 +9,7 @@ import {
 } from "../../utils/filebase.util";
 
 import SignUp from "../../components/signUp/SignUpForm.component";
+import Button from "../../components/button/Button.component";
 
 const SignIn = () => {
   useEffect(() => {
@@ -32,7 +33,7 @@ const SignIn = () => {
   return (
     <div>
       <h1>Sign In Page</h1>
-      <button onClick={logGoogleUser}>Sign in with Google Popup</button>
+      <Button buttonText="Sign in with Google Popup" buttonType="google" onClick={logGoogleUser}/>
       <button onClick={signINWithGoogleRedirect}>
         Sign in with Google Redirect
       </button>
