@@ -5,7 +5,9 @@ import {
 
 import "./signUpForm.style.scss";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
+
+import { UserContext } from "../../context/user.context";
 
 import FormInput from "../formInput/formInput.component";
 import Button from "../button/Button.component";
@@ -89,7 +91,7 @@ const SignUpForm = () => {
           value={confirmPasswrod}
         />
 
-        <Button  type="submit">Sign Up</Button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
