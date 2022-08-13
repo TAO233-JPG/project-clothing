@@ -5,9 +5,8 @@ import {
 
 import "./signUpForm.style.scss";
 
-import { useState, useContext } from "react";
+import { useState } from "react";
 
-import { UserContext } from "../../context/user.context";
 
 import FormInput from "../formInput/formInput.component";
 import Button from "../button/Button.component";

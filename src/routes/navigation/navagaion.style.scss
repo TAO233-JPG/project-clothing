@@ -14,12 +14,12 @@
   }
 
   .nav-links-container {
-    display: flex;
-
+    display    : flex;
+    align-items: center;
 
     .nav-link {
       padding-left: 20px;
-      cursor: pointer;
+      cursor      : pointer;
     }
   }
 }
