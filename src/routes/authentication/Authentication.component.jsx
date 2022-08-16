@@ -16,7 +16,6 @@ const Authentication = () => {
     async function fetchRedirectRes() {
       const response = await getRedirectResult(auth);
       if (response) {
-        console.log(response, "response");
         createUserDocumentFromAuth(response.user);
       }
     }
