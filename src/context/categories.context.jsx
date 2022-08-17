@@ -1,14 +1,40 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useReducer, useEffect } from "react";
 
 import { getCategoriesAndDocuments } from "../utils/filebase.util";
 
+export const CATEGORIES_ACTION_TYPES = {
+  SET_CATEGORIES_MAP: "SET_CATEGORIES_MAP",
+};
+
+const categoriesReducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case CATEGORIES_ACTION_TYPES.SET_CATEGORIES_MAP:
+      return {
+        ...state,
+        categoriesMap: payload,
+      };
+
+    default:
+      throw new Error(`unkown type:> ${type} in CategoriesReducter`);
+  }
+};
+
 export const CategoriesContext = createContext({
   categoriesMap: {},
-  // setCategoriesMapcategoriesMap: () => {},
+  // setCategoriesMap: () => {},
 });
 
 export const CategoriesProvider = ({ children }) => {
-  const [categoriesMap, setCategoriesMap] = useState({});
+  const [{ categoriesMap }, dispatch] = useReducer(categoriesReducer);
+
+  const setCategoriesMap = (categories) => {
+    dispatch({
+      type: CATEGORIES_ACTION_TYPES.SET_CATEGORIES_MAP,
+      payload: categories,
+    });
+  };
 
   useEffect(() => {
     const getCategoriesMap = async () => {
