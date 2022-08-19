@@ -1,4 +1,4 @@
-import { createContext, useState, useReducer, useEffect } from "react";
+import { createContext, useReducer, useEffect } from "react";
 
 import { getCategoriesAndDocuments } from "../utils/filebase.util";
 
