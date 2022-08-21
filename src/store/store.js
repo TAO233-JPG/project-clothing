@@ -6,8 +6,10 @@ import storage from "redux-persist/lib/storage";
 
 import { rootReducer } from "./root-reducer";
 
-// 中间间
-const midWares = [logger];
+// 中间件
+const midWares = [process.env.NODE_ENV === "development" && logger].filter(
+  Boolean
+);
 const composeEnhancer = compose(applyMiddleware(...midWares));
 
 // react-persist
