@@ -1,8 +1,6 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-import { CartContext } from "../../context/cart.context";
 
 import { signOutAuth } from "../../utils/filebase.util";
 
@@ -11,6 +9,7 @@ import CartIcon from "../../components/cartIcon/CartIcon.component";
 import CartDropdown from "../../components/cartDropDown/CartDropDown.component";
 
 import { selectCurrentUser } from "../../store/user/user.select";
+import { selectIsCartOpen } from "../../store/cart/cart.select";
 // import "./navagaion.style.scss";
 import {
   NavigationContainer,
@@ -20,7 +19,7 @@ import {
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
-  const { isCartOpen } = useContext(CartContext);
+  const isCartOpen = useSelector(selectIsCartOpen);
 
   const handleSignOut = async () => {
     await signOutAuth();
