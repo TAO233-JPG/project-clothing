@@ -6,7 +6,7 @@ import CategoriesPreview from "../categorise-preview/categorise-preview.componen
 import Category from "../category/category.conponent";
 import "./shop.style.scss";
 
-import { setCategoriesMap } from "../../store/categorise/categorise.action";
+import { setCategories } from "../../store/categorise/categorise.action";
 import { getCategoriesAndDocuments } from "../../utils/filebase.util";
 
 const Shop = () => {
@@ -15,7 +15,7 @@ const Shop = () => {
     console.log("shop page useEffect render");
     const getCategoriesMap = async () => {
       const categories = await getCategoriesAndDocuments();
-      dispatch(setCategoriesMap(categories));
+      dispatch(setCategories(categories));
     };
 
     getCategoriesMap();
