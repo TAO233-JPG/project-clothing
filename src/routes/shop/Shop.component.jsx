@@ -6,20 +6,13 @@ import CategoriesPreview from "../categorise-preview/categorise-preview.componen
 import Category from "../category/category.conponent";
 import "./shop.style.scss";
 
-import { setCategories } from "../../store/categorise/categorise.action";
-import { getCategoriesAndDocuments } from "../../utils/filebase.util";
+import { fetchCategoriesAsync } from "../../store/categorise/categorise.action";
 
 const Shop = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("shop page useEffect render");
-    const getCategoriesMap = async () => {
-      const categories = await getCategoriesAndDocuments();
-      dispatch(setCategories(categories));
-    };
-
-    getCategoriesMap();
-  }, []);
+    dispatch(fetchCategoriesAsync);
+  });
 
   return (
     <Routes>
