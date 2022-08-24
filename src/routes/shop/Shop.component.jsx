@@ -6,12 +6,12 @@ import CategoriesPreview from "../categorise-preview/categorise-preview.componen
 import Category from "../category/category.conponent";
 import "./shop.style.scss";
 
-import { fetchCategoriesAsync } from "../../store/categorise/categorise.action";
+import { fetchCategoriesStart } from "../../store/categorise/categorise.action";
 
 const Shop = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchCategoriesAsync);
+    dispatch(fetchCategoriesStart());
   });
 
   return (

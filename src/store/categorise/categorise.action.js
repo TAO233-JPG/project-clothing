@@ -1,32 +1,32 @@
 import { CATEGORIES_ACTION_TYPES } from "./categorise.reducer";
 
-import { getCategoriesAndDocuments } from "../../utils/filebase.util";
+// import { getCategoriesAndDocuments } from "../../utils/filebase.util";
 
 export const setCategories = (categories) => ({
   type: CATEGORIES_ACTION_TYPES.SET_CATEGORIES,
   payload: categories,
 });
 
-const fetchCategoriesStart = () => ({
+export const fetchCategoriesStart = () => ({
   type: CATEGORIES_ACTION_TYPES.FETCH_CATEGORISE_START,
 });
 
-const fetchCategoriesSuccess = (categories) => ({
+export const fetchCategoriesSuccess = (categories) => ({
   type: CATEGORIES_ACTION_TYPES.FETCH_CATEGORISE_SUCCESS,
   payload: categories,
 });
-const fetchCategoriesFail = (error) => ({
+export const fetchCategoriesFail = (error) => ({
   type: CATEGORIES_ACTION_TYPES.FETCH_CATEGORISE_ERROR,
   payload: error,
 });
 
-export const fetchCategoriesAsync = async (dispatch) => {
-  dispatch(fetchCategoriesStart());
+// export const fetchCategoriesAsync = async (dispatch) => {
+//   dispatch(fetchCategoriesStart());
 
-  try {
-    const categories = await getCategoriesAndDocuments();
-    dispatch(fetchCategoriesSuccess(categories));
-  } catch (error) {
-    dispatch(fetchCategoriesFail(error));
-  }
-};
+//   try {
+//     const categories = await getCategoriesAndDocuments();
+//     dispatch(fetchCategoriesSuccess(categories));
+//   } catch (error) {
+//     dispatch(fetchCategoriesFail(error));
+//   }
+// };
