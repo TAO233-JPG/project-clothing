@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 import Home from "./routes/home/home.component";
@@ -9,25 +9,19 @@ import Shop from "./routes/shop/Shop.component";
 import Checkout from "./routes/cheakout/checkout.component";
 
 import {
-  onAuthStateChangedListener,
-  createUserDocumentFromAuth,
+  // onAuthStateChangedListener,
+  // createUserDocumentFromAuth,
+  getCurrentUser,
 } from "./utils/filebase.util";
 
-import { setCurrentUser } from "./store/user/user.action";
+// import { setCurrentUser } from "./store/user/user.action";
 
 const App = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocumentFromAuth(user);
-      }
-      dispatch(setCurrentUser(user));
-    });
-
-    return unsubscribe;
-  }, []);
+    getCurrentUser().then((res) => console.log(res));
+  });
 
   return (
     <Routes>

@@ -29,7 +29,7 @@ const firebaseConfig = {
   appId: "1:442506915747:web:0b4dab920fc69a9d6a3416",
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
+export const firebaseApp = initializeApp(firebaseConfig);
 
 const Googleprovider = new GoogleAuthProvider();
 
@@ -66,7 +66,9 @@ export const getCategoriesAndDocuments = async () => {
 
   const querySnapshot = await getDocs(q);
 
-  const categories= querySnapshot.docs.map(docSnapshot => docSnapshot.data())
+  const categories = querySnapshot.docs.map((docSnapshot) =>
+    docSnapshot.data()
+  );
 
   // const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
   //   const { title, items } = docSnapshot.data();
@@ -118,3 +120,16 @@ export const signOutAuth = async () => {
 
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+};
