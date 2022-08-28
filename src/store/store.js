@@ -30,8 +30,8 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(persistedReducer, undefined, composeEnhancer);
 
-sagaMidWare.run(rootSaga);
 
 export const persistor = persistStore(store);
+sagaMidWare.run(rootSaga);
 
 export default store;
