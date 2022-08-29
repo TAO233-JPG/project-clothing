@@ -9,6 +9,10 @@ export const USER_ACTION_TYPES = {
   SIGN_UP_START: "user/SIGN_UP_START",
   SIGN_UP_SUCCESS: "user/SIGN_UP_SUCCESS",
   SIGN_UP_FAIL: "user/SIGN_UP_FAIL",
+
+  SIGN_OUT_START: "user/SIGN_OUT_START",
+  SIGN_OUT_SUCCESS: "user/SIGN_OUT_SUCCESS",
+  SIGN_OUT_FIAL: "user/SIGN_OUT_FIAL",
 };
 
 const INITIAL_STATE = {
@@ -24,6 +28,12 @@ const UserReducer = (state = INITIAL_STATE, action = {}) => {
         ...state,
         currentUser: payload,
       };
+    case USER_ACTION_TYPES.SIGN_OUT_SUCCESS:
+      return {
+        ...state,
+        currentUser: null,
+      };
+    case USER_ACTION_TYPES.SIGN_OUT_FIAL:
     case USER_ACTION_TYPES.SIGN_UP_FAIL:
     case USER_ACTION_TYPES.SIGN_IN_FAIL:
       return {

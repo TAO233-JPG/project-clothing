@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 import FormInput from "../formInput/formInput.component";
 import Button from "../button/Button.component";
-import { siginUpStart } from "../../store/user/user.action";
+import { signUpStart } from "../../store/user/user.action";
 
 const defaultFormFields = {
   displayName: "",
@@ -34,7 +34,7 @@ const SignUpForm = () => {
     }
 
     try {
-      dispatch(siginUpStart(email, password, displayName));
+      dispatch(signUpStart(email, password, displayName));
 
       setFormFields(defaultFormFields);
     } catch (error) {

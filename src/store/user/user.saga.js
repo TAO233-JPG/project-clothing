@@ -2,8 +2,10 @@ import { takeLatest, put, all, call } from "redux-saga/effects";
 
 import { USER_ACTION_TYPES } from "./user.reducer";
 import {
-  siginUpFail,
-  siginUpSuccess,
+  signOutFail,
+  signOutSuccess,
+  signUpFail,
+  signUpSuccess,
   signInFail,
   signInSuccess,
 } from "./user.action";
@@ -13,6 +15,7 @@ import {
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
   createAuthUserWithEmailAndPassword,
+  signOutAuth,
 } from "../../utils/filebase.util";
 
 function* getSnapshotFromUserAuth(userAuth, additionalDetail) {
@@ -86,9 +89,9 @@ function* signUp({ payload }) {
       password
     );
 
-    yield put(siginUpSuccess(user, { displayName }));
+    yield put(signUpSuccess(user, { displayName }));
   } catch (error) {
-    yield put(siginUpFail(error));
+    yield put(signUpFail(error));
   }
 }
 
@@ -106,6 +109,20 @@ function* watchSignUpSuccess() {
 }
 // 注册相关-完
 
+// 注销相关
+function* signOut() {
+  try {
+    yield call(signOutAuth);
+    yield put(signOutSuccess())
+  } catch (error) {
+    yield put(signOutFail(error))
+  }
+}
+
+function* watchSignOutStart() {
+  yield takeLatest(USER_ACTION_TYPES.SIGN_OUT_START, signOut);
+}
+
 export function* userSaga() {
   yield all([
     call(onCheckUserSession),
@@ -113,5 +130,6 @@ export function* userSaga() {
     call(watchEmailSignStart),
     call(watchSignUpStart),
     call(watchSignUpSuccess),
+    call(watchSignOutStart),
   ]);
 }
