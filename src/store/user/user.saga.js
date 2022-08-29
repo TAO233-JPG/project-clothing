@@ -1,12 +1,18 @@
-import { takeLatest, put, all, call, take } from "redux-saga/effects";
+import { takeLatest, put, all, call } from "redux-saga/effects";
 
 import { USER_ACTION_TYPES } from "./user.reducer";
-import { signInFail, signInSuccess } from "./user.action";
+import {
+  siginUpFail,
+  siginUpSuccess,
+  signInFail,
+  signInSuccess,
+} from "./user.action";
 import {
   createUserDocumentFromAuth,
   getCurrentUser,
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
+  createAuthUserWithEmailAndPassword,
 } from "../../utils/filebase.util";
 
 function* getSnapshotFromUserAuth(userAuth, additionalDetail) {
@@ -69,10 +75,43 @@ function* watchGoogleSignInStart() {
 function* watchEmailSignStart() {
   yield takeLatest(USER_ACTION_TYPES.EMAIL_SIGN_IN_START, signInWithEmail);
 }
+
+// 注册相关-始
+function* signUp({ payload }) {
+  const { email, password, displayName } = payload;
+  try {
+    const { user } = yield call(
+      createAuthUserWithEmailAndPassword,
+      email,
+      password
+    );
+
+    yield put(siginUpSuccess(user, { displayName }));
+  } catch (error) {
+    yield put(siginUpFail(error));
+  }
+}
+
+function* signInafterSignUp({ payload }) {
+  const { user, additionalDetail } = payload;
+  yield call(getSnapshotFromUserAuth, user, additionalDetail);
+}
+
+function* watchSignUpStart() {
+  yield takeLatest(USER_ACTION_TYPES.SIGN_UP_START, signUp);
+}
+
+function* watchSignUpSuccess() {
+  yield takeLatest(USER_ACTION_TYPES.SIGN_UP_SUCCESS, signInafterSignUp);
+}
+// 注册相关-完
+
 export function* userSaga() {
   yield all([
     call(onCheckUserSession),
     call(watchGoogleSignInStart),
     call(watchEmailSignStart),
+    call(watchSignUpStart),
+    call(watchSignUpSuccess),
   ]);
 }

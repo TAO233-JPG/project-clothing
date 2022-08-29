@@ -6,7 +6,6 @@ import { useState } from "react";
 import FormInput from "../formInput/formInput.component";
 import Button from "../button/Button.component";
 
-import { signInAuthUserWithEmailAndPassword } from "../../utils/filebase.util";
 import {
   emailSignInStart,
   googleSignInStart,

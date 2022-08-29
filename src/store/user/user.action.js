@@ -25,5 +25,20 @@ export const signInSuccess = (user) => ({
 
 export const signInFail = (error) => ({
   type: USER_ACTION_TYPES.SIGN_IN_FAIL,
-  payload: error,   
+  payload: error,
+});
+
+export const siginUpStart = (email, password, displayName) => ({
+  type: USER_ACTION_TYPES.SIGN_UP_START,
+  payload: { email, password, displayName },
+});
+
+export const siginUpSuccess = (user, additionalDetail) => ({
+  type: USER_ACTION_TYPES.SIGN_UP_SUCCESS,
+  payload: { user, additionalDetail },
+});
+
+export const siginUpFail = (error) => ({
+  type: USER_ACTION_TYPES.SIGN_UP_FAIL,
+  payload: error,
 });
