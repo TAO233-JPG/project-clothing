@@ -14,17 +14,19 @@ const PaymentForm = () => {
     if (!stripe || !elements) {
       return;
     }
-    console.log(1);
+
+    fetch("/")
   };
 
   return (
     <div className={styles["payment-form-container"]}>
-      <h2>信用卡支付: </h2>
-      <CardElement />
-      {/* <PaymentElement/> */}
-      <Button buttonType={BUTTON_TYPE_CLASS.inverted} onClick={handlePayment}>
-        Pay Now
-      </Button>
+      <div className={styles["form-container"]}>
+        <h2>信用卡支付: </h2>
+        <CardElement />
+        <Button buttonType={BUTTON_TYPE_CLASS.inverted} onClick={handlePayment}>
+          Pay Now
+        </Button>
+      </div>
     </div>
   );
 };
