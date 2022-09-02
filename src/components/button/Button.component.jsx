@@ -5,9 +5,16 @@ export const BUTTON_TYPE_CLASS = {
   inverted: "inverted",
 };
 
-const Button = ({ children, buttonType, ...otherProps }) => {
+const Button = ({
+  children,
+  buttonType,
+  isLoading,
+  className,
+  ...otherProps
+}) => {
   return (
     <button
+      disabled={isLoading}
       className={`button-container ${BUTTON_TYPE_CLASS[buttonType]}`}
       {...otherProps}
     >
