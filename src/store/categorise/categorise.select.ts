@@ -2,7 +2,7 @@ import { createSelector } from "reselect";
 import { CategoryStateType } from "./categorise.reducer";
 import { CategoryMapType } from "./categorise.type";
 
-export const selectCategoriesReducer = (state: State): CategoryStateType =>
+export const selectCategoriesReducer = (state): CategoryStateType =>
   state.categories;
 
 // 使用reselect进行缓存
