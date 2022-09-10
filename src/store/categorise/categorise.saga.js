@@ -3,7 +3,7 @@ import {
   fetchCategoriesFail,
   fetchCategoriesSuccess,
 } from "./categorise.action";
-import { CATEGORIES_ACTION_TYPES } from "./categorise.reducer";
+import { CATEGORIES_ACTION_TYPES } from "./categorise.type";
 import { getCategoriesAndDocuments } from "../../utils/filebase.util";
 
 export function* fetchCategoriesAsync() {

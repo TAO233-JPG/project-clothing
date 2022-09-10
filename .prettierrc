@@ -1,0 +1,12 @@
+{
+  "tabWidth": 2,
+  "printWidth": 127,
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "semi": false,
+  "trailingComma": "none",
+  "jsxBracketSameLine": true,
+  "importOrder": ["^react", "^", "^@/", "^[./]"],
+  "importOrderSeparation": true,
+  "experimentalBabelParserPluginsList": ["classProperties", "jsx", "tsx"]
+}
