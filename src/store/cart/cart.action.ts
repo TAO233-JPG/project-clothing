@@ -11,24 +11,6 @@ export const setIsCartOpen = withMatcher((bool: boolean): SetIsCartOpenType => {
 })
 
 // update CartItem： add remove clear
-export const setCartItem = withMatcher(
-  (cartItems: CartItemType[]): SetCartItemType => createAction(CART_ACTION_TYPES.SET_CART_ITEMS, cartItems),
-)
-
-export const addItemToCart = (cartItems: CartItemType[], producToAdd: CategoryItemType) => {
-  const newCartItems = addCartItem(cartItems, producToAdd)
-  return setCartItem(newCartItems)
-}
-
-export const removeItemFromCart = withMatcher((cartItems: CartItemType[], producToRemove: CartItemType) => {
-  const newCartItems = removeCartItem(cartItems, producToRemove)
-  return setCartItem(newCartItems)
-})
-
-export const clearItemFromCart = withMatcher((cartItems: CartItemType[], itemToClear: CartItemType) => {
-  const newCartItems = clearCartItem(cartItems, itemToClear)
-  return setCartItem(newCartItems)
-})
 
 // helperFn
 const addCartItem = (cartItems: CartItemType[], productToAdd: CategoryItemType): CartItemType[] => {
@@ -54,3 +36,24 @@ const removeCartItem = (cartItems: CartItemType[], producToRemove: CartItemType)
 const clearCartItem = (cartItems: CartItemType[], itemToClear: CartItemType): CartItemType[] => {
   return cartItems.filter((item) => item.id !== itemToClear.id)
 }
+
+export const setCartItem = withMatcher(
+  (cartItems: CartItemType[]): SetCartItemType => createAction(CART_ACTION_TYPES.SET_CART_ITEMS, cartItems),
+)
+
+export const addItemToCart = (cartItems: CartItemType[], producToAdd: CategoryItemType) => {
+  const newCartItems = addCartItem(cartItems, producToAdd)
+  return setCartItem(newCartItems)
+}
+
+export const removeItemFromCart = withMatcher((cartItems: CartItemType[], producToRemove: CartItemType) => {
+  console.log(cartItems, "cartItems");
+  
+  const newCartItems = removeCartItem(cartItems, producToRemove)
+  return setCartItem(newCartItems)
+})
+
+export const clearItemFromCart = withMatcher((cartItems: CartItemType[], itemToClear: CartItemType) => {
+  const newCartItems = clearCartItem(cartItems, itemToClear)
+  return setCartItem(newCartItems)
+})
