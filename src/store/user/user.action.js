@@ -1,4 +1,4 @@
-import { USER_ACTION_TYPES } from "./user.reducer";
+import { USER_ACTION_TYPES } from "./user.type";
 
 // 登录相关
 export const setCurrentUser = (user) => ({

@@ -3,11 +3,9 @@ import logger from "redux-logger";
 // react-persist
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-
-import { rootReducer } from "./root-reducer";
-
 import createSagaMidWare from "redux-saga";
 
+import { rootReducer } from "./root-reducer";
 import { rootSaga } from "./root-sage";
 
 // 中间件
