@@ -3,7 +3,7 @@ import { setIsCartOpen, setCartItem } from './cart.action'
 import { CartItemType } from './cart.type'
 
 export type cartStateType = {
-  readonly isCartOpen: Boolean
+  readonly isCartOpen: boolean
   readonly cartItems: CartItemType[]
 }
 
