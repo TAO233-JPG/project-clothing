@@ -75,11 +75,11 @@ export const getCategoriesAndDocuments = async () => {
   return categories
 }
 
-type AdditionalInfoType = {
+export type AdditionalInfoType = {
   displayName?: string
 }
 
-type userDataType = {
+export type UserDataType = {
   createdAt: Date
   displayName: string
   email: string
@@ -88,7 +88,7 @@ type userDataType = {
 export const createUserDocumentFromAuth = async (
   userAuth: User,
   additionInformation = {} as AdditionalInfoType,
-): Promise<QueryDocumentSnapshot<userDataType> | void> => {
+): Promise<QueryDocumentSnapshot<UserDataType> | void> => {
   if (!userAuth) return
 
   const userDocRef = doc(db, 'users', userAuth.uid)
@@ -111,7 +111,7 @@ export const createUserDocumentFromAuth = async (
     }
   }
 
-  return userSnapshot as QueryDocumentSnapshot<userDataType>
+  return userSnapshot as QueryDocumentSnapshot<UserDataType>
 }
 
 export const createAuthUserWithEmailAndPassword = async (email: string, password: string) => {
