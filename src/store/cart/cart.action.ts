@@ -46,14 +46,12 @@ export const addItemToCart = (cartItems: CartItemType[], producToAdd: CategoryIt
   return setCartItem(newCartItems)
 }
 
-export const removeItemFromCart = withMatcher((cartItems: CartItemType[], producToRemove: CartItemType) => {
-  console.log(cartItems, "cartItems");
-  
+export const removeItemFromCart = (cartItems: CartItemType[], producToRemove: CartItemType) => {
   const newCartItems = removeCartItem(cartItems, producToRemove)
   return setCartItem(newCartItems)
-})
+}
 
-export const clearItemFromCart = withMatcher((cartItems: CartItemType[], itemToClear: CartItemType) => {
+export const clearItemFromCart = (cartItems: CartItemType[], itemToClear: CartItemType) => {
   const newCartItems = clearCartItem(cartItems, itemToClear)
   return setCartItem(newCartItems)
-})
+}
