@@ -22,6 +22,7 @@ import {
   query,
   QueryDocumentSnapshot,
 } from 'firebase/firestore'
+import { CategoryType } from '../store/categorise/categorise.type'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBLF-Fq09zM4U1ZF8h4LfsFB4QzLdkSCB0',
@@ -58,13 +59,13 @@ export const addCollectionAndDocuments = async (collectionKey: string, objectsTo
   await batch.commit()
 }
 
-export const getCategoriesAndDocuments = async () => {
+export const getCategoriesAndDocuments = async (): Promise<CategoryType[]> => {
   const collectionRef = collection(db, 'categories')
   const q = query(collectionRef)
 
   const querySnapshot = await getDocs(q)
 
-  const categories = querySnapshot.docs.map((docSnapshot) => docSnapshot.data())
+  const categories = querySnapshot.docs.map((docSnapshot) => docSnapshot.data() as CategoryType)
 
   // const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
   //   const { title, items } = docSnapshot.data();
@@ -128,7 +129,7 @@ export const signOutAuth = async () => {
 
 export const onAuthStateChangedListener = (callback: NextOrObserver<User>) => onAuthStateChanged(auth, callback)
 
-export const getCurrentUser = () => {
+export const getCurrentUser = (): Promise<User | null> => {
   return new Promise((resolve, reject) => {
     const unsubscribe = onAuthStateChanged(
       auth,
